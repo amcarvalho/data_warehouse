@@ -7,7 +7,7 @@ data_warehouse:
     dev:
       type: bigquery
       method: service-account
-      project: data-stack-261610
+      project: "{{ env_var('GCP_PROJECT') }}"
       dataset: "acarvalho"
       threads: 4
       keyfile: "{{ env_var('GCP_KEY_FILE') }}"
@@ -16,7 +16,7 @@ data_warehouse:
     prod:
       type: bigquery
       method: service-account
-      project: data-stack-261610
+      project: "{{ env_var('GCP_PROJECT') }}"
       dataset: "prod"
       threads: 4
       keyfile: "{{ env_var('GCP_KEY_FILE') }}"
