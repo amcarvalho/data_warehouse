@@ -1,0 +1,23 @@
+version: 2
+models:
+  - name: f_sales_by_postcode
+    description: "Contains, for each day, aggregated sales by postcode based on the location of the User at the time of the Sale.
+    Data is materialised on a table partitioned by date and the pipeline ensures that each partition is (re)processed
+    in its entirety in each incremental execution."
+    tests:
+      - unique:
+          column_name: "concat(postcode, format_date(\"%F\", date))"
+    columns:
+      - name: date
+        description: "Date in which all Sales have been aggregated for."
+        tests:
+          - not_null
+      - name: postcode
+        description: "Date in which all Sales have been aggregated for. Sales are aggregate based on the postcode of the
+        user at the time of each sale."
+        tests:
+          - not_null
+      - name: total
+        description: "Total monetary value of sales for each `date` x `postcode` combination."
+        tests:
+          - not_null

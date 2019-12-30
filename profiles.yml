@@ -1,0 +1,30 @@
+
+# For more information on how to configure this file, please see:
+# https://docs.getdbt.com/docs/profile
+
+data_warehouse:
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: data-stack-261610
+      dataset: "acarvalho"
+      threads: 4
+      keyfile: /home/alexandre/data-stack.json
+      keyfile: "{{ env_var('GCP_KEY_FILE') }}"
+      timeout_seconds: 300
+      priority: interactive
+    prod:
+      type: bigquery
+      method: service-account
+      project: data-stack-261610
+      dataset: "prod"
+      threads: 4
+      keyfile: /home/alexandre/data-stack.json
+      keyfile: "{{ env_var('GCP_KEY_FILE') }}"
+      timeout_seconds: 300
+      priority: interactive
+  target: dev
+
+config:
+  send_anonymous_usage_stats: False

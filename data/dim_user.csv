@@ -1,0 +1,6 @@
+id,name,postcode,load_date
+user1,User 1,SW19,2019-10-06
+user2,User 2,SW18,2019-10-06
+user3,User 3,SW17,2019-10-06
+user2,User 2,SW19,2019-11-06
+user3,User 3,SW19,2019-11-06

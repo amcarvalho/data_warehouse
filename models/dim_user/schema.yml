@@ -1,0 +1,29 @@
+version: 2
+sources:
+  - name: datamart
+    schema: datamart
+    loader: "Stitch Data from Source System X"
+    tables:
+      - name: dim_user
+        description: "Contains User data loaded from Source System X. Data for all users is available for
+        each `loaded_date`, thus ensuring we are able to track changes across all attributes of a particular user."
+        tests:
+          - unique:
+              column_name: "concat(id, format_date(\"%F\", load_date))"
+        columns:
+          - name: id
+            description: "User unique identifier."
+            tests:
+              - not_null
+          - name: name
+            description: "Name of the User."
+            tests:
+              - not_null
+          - name: postcode
+            description: "Postcode where the User lives at the time of load_date."
+            tests:
+              - not_null
+          - name: load_date
+            description: "Date when User data was loaded from source system."
+            tests:
+              - not_null

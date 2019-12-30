@@ -1,0 +1,38 @@
+version: 2
+models:
+  - name: f_sales
+    description: "Denormalised facts table containing all Sales data along with all Users' attributes
+    at the time of each sale. Data is materialised on a table partitioned by sale date and the pipeline ensures that
+    each partition is (re)processed in its entirety in each incremental execution."
+    columns:
+      - name: datetime
+        description: "Timestamp when the sale occurred."
+        tests:
+          - not_null
+      - name: user_id
+        description: "Unique identifier of the Users associated with the Sales. This is the _Buyer_."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_user')
+              field: id
+      - name: user_name
+        description: "Name of the User at the time of the Sale."
+        tests:
+          - not_null
+      - name: user_postcode
+        description: "Postcode of the User at the time of the Sale."
+        tests:
+          - not_null
+      - name: product_id
+        description: "Unique identifier of the product being purchased."
+        tests:
+          - not_null
+      - name: qty
+        description: "# of units purchased."
+        tests:
+          - not_null
+      - name: price
+        description: "Price of each unit of product being purchased."
+        tests:
+          - not_null
