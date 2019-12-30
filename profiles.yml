@@ -10,7 +10,6 @@ data_warehouse:
       project: data-stack-261610
       dataset: "acarvalho"
       threads: 4
-      keyfile: /home/alexandre/data-stack.json
       keyfile: "{{ env_var('GCP_KEY_FILE') }}"
       timeout_seconds: 300
       priority: interactive
@@ -20,7 +19,6 @@ data_warehouse:
       project: data-stack-261610
       dataset: "prod"
       threads: 4
-      keyfile: /home/alexandre/data-stack.json
       keyfile: "{{ env_var('GCP_KEY_FILE') }}"
       timeout_seconds: 300
       priority: interactive
